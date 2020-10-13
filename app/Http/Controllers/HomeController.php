@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
@@ -22,8 +22,9 @@ class HomeController extends Controller
 
     public function redirect()
     {
-        $position = Location::get();
-        $country = Country::where('alpha_code2', $position->countryCode)->first();
+        $position = Location::get(Request::ip());
+        $countryCode = $position ? $position->countryCode : 'AA';
+        $country = Country::where('alpha_code2', $countryCode)->first();
         $default = Country::where('name', 'Default')->first()->redirects()->first();
         $redirect = $country->redirects()->first();
 
