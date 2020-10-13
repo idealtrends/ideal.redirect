@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function redirect()
     {
-        $position = Location::get(Request::ip());
+        $position = Location::get($this->getIp());
         $countryCode = $position ? $position->countryCode : 'AA';
         $country = Country::where('alpha_code2', $countryCode)->first();
         $default = Country::where('name', 'Default')->first()->redirects()->first();
