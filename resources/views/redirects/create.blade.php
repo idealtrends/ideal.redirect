@@ -13,7 +13,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="inputCountry">Country</label>
-                                <select id="inputCountry" class="form-control" name="country">
+                                <select id="inputCountry" class="form-control" name="country" required>
                                     <option selected value="">Choose...</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="inputUrl">Url to redirect</label>
-                                <input type="text" class="form-control" id="inputUrl" name="url">
+                                <input type="text" class="form-control" id="inputUrl" name="url" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
